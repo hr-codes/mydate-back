@@ -12,7 +12,6 @@ router.use(function timeLog(req, res, next) {
   next();
 });
 
-
 router.get('/', (req, res) => {
   res.json({
     message: 'Welcome!'
@@ -33,5 +32,8 @@ router.route('/auth/sign-in')
 
 router.route('/auth/sign-up')
   .post(users.post)
+
+router.route('/auth/logout')
+  .post(auth.logout)
 
 module.exports =  router;
