@@ -1,4 +1,5 @@
 const User = require('../models/User')
+const Profile = require('../models/Profile')
 const bcrypt = require("bcrypt")
 
 const usersController = {
@@ -11,10 +12,15 @@ const usersController = {
       return;
     }
 
+    const profile = await Profile.findOne({})
+
+    console.log(profile.id)
+
     const data = {
       username,
       name,
       email,
+      profile_id: profile.id,
       password
     };
 

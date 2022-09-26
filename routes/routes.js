@@ -3,6 +3,7 @@ const router = express.Router();
 
 const users = require('./users');
 const auth = require('./auth');
+const profiles = require('./profiles');
 
 const middlewareAuth = require('../middlewares/Authentication')
 
@@ -20,7 +21,7 @@ router.get('/', (req, res) => {
 
 router.route('/users')
   .get(middlewareAuth, users.getAll)
-  .post(middlewareAuth, users.post)
+  .post(users.post)
 
 router.route('/users/:id')
   .patch(middlewareAuth, users.patch)
@@ -35,5 +36,14 @@ router.route('/auth/sign-up')
 
 router.route('/auth/logout')
   .post(auth.logout)
+
+router.route('/profiles')
+  .post(profiles.create)
+
+router.route('/profiles')
+  .get(profiles.getAll)
+
+router.route('/profiles/:id')
+  .get(profiles.get)
 
 module.exports =  router;
